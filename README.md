@@ -1,4 +1,4 @@
-PHP-library
+Atomic Reach PHP Library
 ===========
 
 PHP library to work with Atomic Reach API
