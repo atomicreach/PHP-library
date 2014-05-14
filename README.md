@@ -17,7 +17,7 @@ AR API is based on Oauth and client's of the API will require the Oauth credenti
 
 where `YOUR_CALLBACK_URL` = a URL on the client-side for the API to respond to. This will provide a login window where the User can provide their account credentials to authenticate with the API. The API will return both keys to your callback URL via GET parameters: `key` and `secret`. It is recommended that you safely store these keys in your application for further calls to the API and to avoid a User having to login every time.
 
-## Service Request[5]
+## Service Request
 
 All service requests must be sent to:
 
@@ -304,12 +304,12 @@ Response
     words (Array[string])
 
 
-## PHP API Client[17]
+## PHP API Client
 
 `class AR_Client`
 Provides Access to the AR API.
 
-### Public methods[18]
+### Public methods
 
 `function __construct(string $apiHost, string $key, string $secret)`
 Constructor.
