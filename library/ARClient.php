@@ -127,9 +127,9 @@ class AR_Client {
 		return $this->doRequest('/post/add', array('text' => $text, 'teaser' => $teaser, 'sourceId' => $sourceId, 'segmentId' => $segmentId, 'title' => $title, 'pubDate' => $pubDate, 'url' => $postUrl));
 	}
 	
-	public function analyzePost($content, $title = '', $segmentId = null) {
-		return $this->doRequest('/post/analyze', array('content' => $content, 'title' => $title, 'segmentId' => $segmentId));
-	}
+	public function analyzePost($content, $title = '', $sophisticationBandId = null) {
+			return $this->doRequest('/post/analyze', array('content' => $content, 'title' => $title, 'sophisticationBandId'=>$sophisticationBandId));
+		}
 	
 	public function addSource($title, $segmentDataJson) {
 		return $this->doRequest('/source/add', array('title' => $title, 'segmentDataJson' => $segmentDataJson));
@@ -138,6 +138,10 @@ class AR_Client {
 	public function getAudienceList(){
 		return $this->doRequest('/source/get-audience-list', array());
 	}
+	
+	public function getSophisticationBandList(){
+			return $this->doRequest('/source/get-sophistication-band-list', array());
+		}
 
   	public function trackWordpressData($data) {
     	return $this->doRequest('/wordpress/track-data', array('data' => $data));

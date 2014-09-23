@@ -242,13 +242,13 @@ Parameters
 
 Available options for `contentType` are: Informal, Informative, Educational, Technical
 
-Available options for `audienceType` are: General, Knowledgeable, Specialist, Academic
+Available options for `audienceType` are: General, Knowledgeable, Specialist, Academic, Genius
 
 Response
 
-* `sourceId` (int): content source ID.
+* `sophisticationBandId` (int): content source ID.
 
-### `source/get-audience-list`
+### `source/getSophisticationBandList`
 
 Returns a list of the user content sources and their audience segments. This is necessary for reference in `post/add` and `post/analyze` calls.
 
