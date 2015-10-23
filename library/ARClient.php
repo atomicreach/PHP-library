@@ -146,7 +146,7 @@ class AR_Client {
 		$profileObj->sign_request($this->sig_method, $test_consumer, $token);
 		$toHeader = $profileObj->to_header();
 		$r = $this->_getCurlResponse($toHeader, $endpoint, $method, $data);
-
+		$this->rawResponse = $r;
 		$json = json_decode($r);
 		//If a token problem is detected - try to regenerate valids
 		if($json->status == AR_Client::STATUS_INVALID_ACCESS_TOKEN) $this->closeSession();
@@ -178,6 +178,11 @@ class AR_Client {
 		curl_close($ch);
 		return $output;
 	}
+	
+	public function identifyCms($url){
+		return $this->doRequest("/api/identify", array("url"=>$url));	
+	}
+	
 	public function analysisResult($postId) {
 		return $this->doRequest('/post/analysisresults',array('postId'=>$postId));
 	}
@@ -203,6 +208,10 @@ class AR_Client {
 		return $this->doRequest('/source/get-audience-list', array());
 	}
 
+	public function updateSource($sourceId, $accountAnalyticsId){
+		return $this->doRequest('/source/update', array('sourceId'=>$sourceId, 'analyticsId'=>$accountAnalyticsId));
+	}
+
 	public function getWebProfiles() {
 		return $this->doRequest('/engagement/web-profiles', array());
 	}
@@ -215,6 +224,16 @@ class AR_Client {
 						'receive_product_updates'=>$receive_product_updates);
 		if (!is_null($googleId)) $parameters = array_merge($parameters, array("google_id"=>$googleId));
 		return $this->doRequest('/account/create',$parameters);
+	}
+
+	public function getEmail() {
+		$parameters = array();
+		return $this->doRequest('/account/email',$parameters);
+	}
+
+	public function getAccountData() {
+		$parameters = array();
+		return $this->doRequest('/account/data',$parameters);
 	}
 	
 	public function analyzePost($content, $title = '', $segmentId = null, $async = null, $sophisticationBandId = null, $waitForResults = null) {
@@ -332,7 +351,7 @@ class AR_Client {
 		  , "knowledge" => urldecode($knowledge)
 		  , "author" => urldecode($author)
 		  , "title" => urldecode($title)
-		  , "topic" => urldecode($topic)
+		  , "topicids" => urldecode($topic)
 		), "GET");
 	}
 	
